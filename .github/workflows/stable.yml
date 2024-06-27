@@ -1,6 +1,7 @@
 name: Android CI Release
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'stable.md'
@@ -34,10 +35,10 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew assembleRelease
-        -Pandroid.injected.signing.store.file=$GITHUB_WORKSPACE/signing-key.jks 
-        -Pandroid.injected.signing.store.password=${{ secrets.PASSWORD }} 
-        -Pandroid.injected.signing.key.alias=key0
-        -Pandroid.injected.signing.key.password=${{ secrets.PASSWORD }}
+        #-Pandroid.injected.signing.store.file=$GITHUB_WORKSPACE/signing-key.jks 
+        #-Pandroid.injected.signing.store.password=${{ secrets.PASSWORD }} 
+        #-Pandroid.injected.signing.key.alias=key0
+        #-Pandroid.injected.signing.key.password=${{ secrets.PASSWORD }}
       shell: bash
 
     - name: Upload a Build Artifact
